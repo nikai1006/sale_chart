@@ -1,0 +1,53 @@
+@charset"utf-8";
+/** * Created by yangshuangshuang on 2017/5/12.   */
+
+
+/*登录页、注册页、重置密码页面公共样式*/
+.canvas{position:absolute;top:0;left:0;}
+.contenier{}
+.box{position:absolute;top:50%;left:50%; margin-left:-249px; background:white;width:430px;border:4px solid #002D6B;border-radius: 26px;padding:20px 30px;box-shadow:5px 5px 10px #002D6A;}
+.box .box-title{position:relative;text-align:center;font-size: 30px;padding-bottom: 15px;}
+.box .box-title .text{position:relative;z-index: 1;padding:0 10px;background:#fff;letter-spacing:1px;}
+.box .box-title .hr{position:absolute;border:none; border-top:1px solid #A4A7A5;width:100%;top:18px;z-index: 0;margin:0;}
+.box .ul{}
+.box .ul li{padding-bottom:10px;}
+.box .ul li div{line-height:44px;}
+.box .ul li div .star{}
+.box .ul li div .label{}
+.box .ul li div input{height:22px;line-height:22px;width:320px;padding:10px 16px 10px 14px;}
+.box .ul li div input:focus{border-color:#999;}
+.box .ul li .tips{padding:2px 0 0 70px;}
+.box .p-remeber{padding:10px 0 2px 0;}
+.box .p-remeber label{cursor:pointer;}
+.box .btn-login{width: 428px;height: 40px;background-color: #3761C5;color: white;font-size: 16px;border: 1px solid #ccc;border-radius: 6px;}
+.box .p-outher{padding:5px 0 10px 0;text-align: center;}
+.box .p-outher a{padding:0 10px;color:#7b7b7b;}
+.box .btn-login:hover{background-color:#0500c6;cursor:pointer;}
+.box .p-outher a:hover{text-decoration:underline;color:#3761C5;}
+
+/*登录页面*/
+.box.box-login{margin-top:-188px;}
+.box.box-login .ul li div input{width:300px;}
+.box.box-login .ul li div .span-text{display: inline-block;width:84px;text-align: right;}
+.box.box-login .ul li .tips{padding:2px 0 0 90px;}
+
+/*注册页面*/
+.box.box-loginUp{margin-top:-323px;}
+.box.box-loginUp .ul li div input{width:300px;}
+.box.box-loginUp .ul li div .span-text{display: inline-block;width:84px;text-align: right;}
+.box.box-loginUp .ul li .tips{padding:2px 0 0 90px;}
+
+/*重置密码发送邮件页面*/
+.box.box-reset{margin-top:-102px;}
+.box.box-reset .ul li div input{width:300px;}
+.box.box-reset .ul li div .span-text{display: inline-block;width:84px;text-align: right;}
+.box.box-reset .ul li .tips{padding:2px 0 0 90px;}
+
+/*重置密码重新设置密码页面*/
+.box.box-resetSure{margin-top:-199px;}
+.box.box-resetSure .ul li div input{width:300px;}
+.box.box-resetSure .ul li div .span-text{display: inline-block;width:84px;text-align: right;}
+.box.box-resetSure .ul li .tips{padding:2px 0 0 90px;}
+
+/*页角*/
+.footer{position:absolute;left:0;bottom:10px;z-index: 1; width:100%;line-height:26px;color:#043b7b; }
