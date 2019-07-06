@@ -17,7 +17,7 @@ $(function () {
                 hideLoading();
                 if (data.code == 0) {
                     console.log("刷新数据")
-                    let content = data.data;
+                    var content = data.data;
                     $('#login_num').text(content.login_num)
                     $('#err_num').text(content.err_num)
                     $('#no_phone_login').text(content.no_phone_login)
@@ -92,57 +92,6 @@ $(function () {
         });
     }
 
-    function input_logs() {
-        console.log("开始导入");
-        let logPath = $('#log-path').val();
-        if (logPath == '') {
-            layer.open({
-                title: system_tips,
-                btn: [system_ok],
-                content: ('日志路径不能为空'),
-                icon: '2'
-            });
-            return;
-        }
-        console.log("导入路径：" + logPath);
-        showLoading();
-        $.ajax({
-            type: 'POST',
-            url: '/count/async/logs',
-            data: {
-                'logPath': logPath
-            },
-            dataType: "json",
-            success: function (data) {
-                hideLoading();
-                if (data.code == 0) {
-                    layer.open({
-                        title: system_tips,
-                        btn: [system_ok],
-                        content: (data.msg),
-                        icon: '1'
-                    });
-                } else {
-                    layer.open({
-                        title: system_tips,
-                        btn: [system_ok],
-                        content: (data.msg),
-                        icon: '2'
-                    });
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                hideLoading();
-                layer.open({
-                    title: system_tips,
-                    btn: [system_ok],
-                    content: ('系统异常:' + textStatus),
-                    icon: '2'
-                });
-            }
-        });
-
-    }
 
     /**
      * pie Chart Init
@@ -392,14 +341,16 @@ $(function () {
     });
 
     $('#importBtn').click(function () {
-        input_logs();
+        $('#addModal').modal({backdrop: false, keyboard: true}).modal('show');
     });
 
-    $('#log-path').keydown(function (event) {
-        if (event.keyCode == 13) {
-            input_logs();
-        }
+
+    // 隐藏弹框
+    $("#addModal").on('hide.bs.modal', function () {
+         $("#file-4").fileinput('clear');
+        $("#addModal .form .form-group").removeClass("has-error");
     });
+
     // freshChartDate($('#date').val() + " 00:00:00", $('#date').val() + " 23:59:59", $('#date').val(), false);
 
     // initFileInput();
