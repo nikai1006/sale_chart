@@ -356,6 +356,26 @@ $(function () {
 
     }
 
+    function initFileInput() {
+        $("#file-4").fileinput({
+            // 'theme': 'fas',
+            // 'showUpload': false,
+            // 'showPreview': false,
+            // 'allowedFileExtensions': ['jpg', 'png', 'gif', 'xlsx'],
+            // 'elErrorContainer': '#errorBlock',
+            // 'uploadUrl': "/chart/upload/",
+            // 'maxFileCount': 5
+
+            language: 'zh', //设置语言
+            uploadUrl: "/chart/upload/", //上传的地址
+            allowedFileExtensions: ['jpg', 'png', 'gif', 'xlsx'],//接收的文件后缀
+            // showUpload: false, //是否显示上传按钮
+            // showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        });
+    }
+
     $('#flushBtn').click(function () {
         var date = $('#date').val()
         var start = date + " 00:00:00";
@@ -380,17 +400,9 @@ $(function () {
             input_logs();
         }
     });
-    freshChartDate($('#date').val() + " 00:00:00", $('#date').val() + " 23:59:59", $('#date').val(), false);
+    // freshChartDate($('#date').val() + " 00:00:00", $('#date').val() + " 23:59:59", $('#date').val(), false);
 
-    $("#file-4").fileinput({
-        'theme': 'fas',
-        'showUpload': false,
-        'showPreview': false,
-        'allowedFileExtensions': ['jpg', 'png', 'gif', 'xlsx'],
-        'elErrorContainer': '#errorBlock',
-        'uploadUrl': "/chart/upload/",
-        'maxFileCount': 5
-    });
+    initFileInput();
 
 });
 
