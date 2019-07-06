@@ -402,7 +402,7 @@ $(function () {
     });
     // freshChartDate($('#date').val() + " 00:00:00", $('#date').val() + " 23:59:59", $('#date').val(), false);
 
-    initFileInput();
+    // initFileInput();
 
 });
 
