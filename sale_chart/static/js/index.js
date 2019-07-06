@@ -382,6 +382,16 @@ $(function () {
     });
     freshChartDate($('#date').val() + " 00:00:00", $('#date').val() + " 23:59:59", $('#date').val(), false);
 
+    $("#file-4").fileinput({
+        'theme': 'fas',
+        'showUpload': false,
+        'showPreview': false,
+        'allowedFileExtensions': ['jpg', 'png', 'gif', 'xlsx'],
+        'elErrorContainer': '#errorBlock',
+        'uploadUrl': "/chart/upload/",
+        'maxFileCount': 5
+    });
+
 });
 
 
