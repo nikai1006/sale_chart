@@ -77,8 +77,32 @@
             <div class="row">
                 <div class="col-xs-2">
                     <div class="input-group">
+                        <span class="input-group-addon">省</span>
+                        <select class="form-control" id="province">
+                            <option value="all">all</option>
+                            {% for province in provinces %}
+                                <option value="{{ province }}">{{ province }}月</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">市</span>
+                        <select class="form-control" id="city">
+                            <option value="all">all</option>
+                            {% for city in cities %}
+                                <option value="{{ city }}">{{ city }}月</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xs-2">
+                    <div class="input-group">
                         <span class="input-group-addon">日期</span>
                         <select class="form-control" id="date">
+                            <option value="all">all</option>
                             {% for date in dates %}
                                 <option value="{{ date }}">{{ date }}月</option>
                             {% endfor %}
