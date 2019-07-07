@@ -1,51 +1,6 @@
 $(function () {
 
 
-    function freshStaticsData(startDate, endDate, date, flush) {
-        showLoading();
-        $.ajax({
-            type: 'POST',
-            url: '/count/statistic/',
-            data: {
-                'startDate': startDate,
-                'endDate': endDate,
-                'date': date,
-                'flush': flush
-            },
-            dataType: "json",
-            success: function (data) {
-                hideLoading();
-                if (data.code == 0) {
-                    console.log("刷新数据")
-                    var content = data.data;
-                    $('#login_num').text(content.login_num)
-                    $('#err_num').text(content.err_num)
-                    $('#no_phone_login').text(content.no_phone_login)
-                    $('#all_phone_count').text(content.all_phone_count)
-                    $('#connect_without_login_total').text(content.connect_without_login_total + " 占比:" + content.connect_without_login_total_vs_login_num)
-                    $('#err_vs_normal').text(content.err_vs_normal)
-                } else {
-                    layer.open({
-                        title: system_tips,
-                        btn: [system_ok],
-                        content: (data.msg || job_dashboard_report_loaddata_fail),
-                        icon: '2'
-                    });
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                hideLoading();
-                layer.open({
-                    title: system_tips,
-                    btn: [system_ok],
-                    content: ('系统异常:' + textStatus),
-                    icon: '2'
-                });
-            }
-        });
-
-    }
-
     /**
      * fresh Chart Date
      *
