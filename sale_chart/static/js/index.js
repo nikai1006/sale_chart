@@ -9,13 +9,16 @@ $(function () {
      */
     function freshChartDate() {
         showLoading();
+        var province = $('#province').val();
+        var city = $('#city').val();
+        var date = $('#date').val();
         $.ajax({
             type: 'POST',
             url: '/chart/data/',
             data: {
-                'province': $('#province').val(),
-                'city': $('#city').val(),
-                'date': $('#date').val()
+                'province': province,
+                'city': city,
+                'date': date
             },
             dataType: "json",
             success: function (data) {
@@ -51,60 +54,8 @@ $(function () {
      * pie Chart Init
      */
     function pieChartInit(data) {
-        var option = {
-            title: {
-                text: job_dashboard_group_report,
-                /*subtext: 'subtext',*/
-                x: 'center'
-            },
-            tooltip: {
-                trigger: 'item',
-                formatter: "{b} : {c} ({d}%)"
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                data: ["带电话正常", "无电话登录",
-                    "带电话异常", "无电话异常"]
-            },
-            series: [
-                {
-                    //name: '分布比例',
-                    type: 'pie',
-                    radius: '55%',
-                    center: ['50%', '60%'],
-                    data: [
-                        {
-                            name: "带电话正常",
-                            // value: data..triggerCountSucTotal
-                            value: data.phone_normal_total
-                        },
-                        {
-                            name: "无电话登录",
-                            value: data.non_phone_normal
-                        },
-                        {
-                            name: "带电话异常",
-                            value: data.phone_err
-                        },
-                        {
-                            name: "无电话异常",
-                            value: data.non_phone_err_total
-                        }
-                    ],
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ],
-            color: ['#00A65A', '#c23632', '#0d10f3', '#e1f32b']
-        };
         var pieChart = echarts.init(document.getElementById('pieChart'));
-        pieChart.setOption(option);
+        pieChart.setOption(data);
     }
 
     function barChartInit(option) {
