@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from chart.views.ExcelProcessor import *
+from chart.views.data_api import *
 
 urlpatterns = [
     path('upload/', ExcelProcessor.as_view()),
+    path('city/', ProvinceHandler.as_view()),
 ]

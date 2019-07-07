@@ -287,6 +287,72 @@ $(function () {
         freshStaticsData(start, end, date, true);
         freshChartDate(start, end, date, true);
     });
+
+    function flushCity(province) {
+        $.ajax({
+            type: 'GET',
+            url: '/chart/city/',
+            data: {
+                'province': province,
+            },
+            // dataType: 'json',
+            success: function (data) {
+                if (data.code == 0) {
+                    var cities = data.data;
+                    if (cities.length > 0) {
+                        $('#city').empty();
+                        $('#city').append("<option value=\"all\">all</option>");
+                        for (i in cities) {
+                            var city = cities[i];
+                            console.log(city);
+                            $('#city').append("<option value='" + city + "'>" + city + "</option>");
+                        }
+                        var flush = $("[name='my-checkbox']").val();
+                        freshChartDate(start, end, cities[0], flush);
+                        tableView.fnDraw();
+                    }
+                } else {
+                    layer.open({
+                        title: system_tips,
+                        btn: [system_ok],
+                        content: (data.msg || fail),
+                        icon: '2'
+                    });
+                }
+
+            }
+
+        });
+
+    }
+
+    $('#province').change(function () {
+        var province = $('#province').val();
+        if (province == 'all') {
+            console.log(province)
+            $('#city').empty();//清空列表
+            $('#city').append("<option value=\"all\">all</option>");
+
+        } else {
+            flushCity(province);
+        }
+    });
+
+    $('#city').change(function () {
+        var city = $('#city').val();
+        if (city == 'all') {
+            $('#date').empty();//清空列表
+            $('#date').append("<option value=\"all\">all</option>");
+            for (i = 1; i < 7; i++) {
+                $('#date').append("<option value=\"" + i + "\">" + i + "月</option>");
+
+            }
+        } else {
+            $('#date').empty();//清空列表
+            $('#date').append("<option value=\"all\">all</option>");
+        }
+    });
+
     $('#date').change(function () {
         var date = $('#date').val()
         var start = date + " 00:00:00";
@@ -302,7 +368,7 @@ $(function () {
 
     // 隐藏弹框
     $("#addModal").on('hide.bs.modal', function () {
-         $("#file-4").fileinput('clear');
+        $("#file-4").fileinput('clear');
         $("#addModal .form .form-group").removeClass("has-error");
     });
 
