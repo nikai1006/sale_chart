@@ -10,6 +10,8 @@ from rest_framework.views import APIView
 from sale_chart.common.response_format import *
 from sale_chart.common.sql_excuter import *
 from chart.models import *
+from pyecharts.charts import Bar
+from pyecharts import options as opts
 from pyecharts.charts.base import Base
 from pyecharts.options.charts_options import *
 from pyecharts.options.series_options import *
@@ -26,16 +28,25 @@ class ChartData(APIView):
         city = post.get('city')
         month = post.get('date')
         print('province=%s, city=%s, month=%s' % (province, city, month))
+        bar = Bar()
         if province == 'all':
             if month == 'all':
                 totals = runquery(
                     """SELECT SUM(money) AS total, province FROM t_sale_info WHERE `month` in (1,2,3,4,5,6) GROUP BY province ORDER BY total DESC;""")
+                title = '本年度各省销售情况'
             else:
                 totals = runquery(
-                    """SELECT SUM(money) AS total, province FROM t_sale_info WHERE `month` =""" + str(month) + """ GROUP BY province ORDER BY total DESC;""")
+                    """SELECT SUM(money) AS total, province FROM t_sale_info WHERE `month` =""" + str(
+                        month) + """ GROUP BY province ORDER BY total DESC;""")
+                title = str(month) + '月份各省销售情况'
+            x_axis = []
+            y_axis = []
             for total in totals:
-                total.get('province')
-                total.get('total')
+                x_axis.append(total.get('province'))
+                y_axis.append(total.get('total'))
+            bar.add_xaxis(x_axis)
+            bar.add_yaxis(series_name='全省销售额', yaxis_data=y_axis)
+            bar.set_global_opts(title_opts=opts.TitleOpts(title=title))
 
         else:
             if city == 'all':
@@ -43,7 +54,7 @@ class ChartData(APIView):
             else:
                 pass
 
-        return response_success(data={})
+        return response_success(data=bar.dump_options())
 
 
 class ProvinceHandler(APIView):

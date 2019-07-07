@@ -21,4 +21,5 @@ from chart.views.data_api import *
 urlpatterns = [
     path('upload/', ExcelProcessor.as_view()),
     path('city/', ProvinceHandler.as_view()),
+    path('data/', ChartData.as_view()),
 ]
