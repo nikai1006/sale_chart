@@ -10,6 +10,10 @@ from rest_framework.views import APIView
 from sale_chart.common.response_format import *
 from sale_chart.common.sql_excuter import *
 from chart.models import *
+from pyecharts.charts.base import Base
+from pyecharts.options.charts_options import *
+from pyecharts.options.series_options import *
+from pyecharts.options.global_options import *
 
 
 class ChartData(APIView):
@@ -23,7 +27,15 @@ class ChartData(APIView):
         month = post.get('date')
         print('province=%s, city=%s, month=%s' % (province, city, month))
         if province == 'all':
-            pass
+            if month == 'all':
+                totals = runquery(
+                    """SELECT SUM(money) AS total, province FROM t_sale_info WHERE `month` in (1,2,3,4,5,6) GROUP BY province ORDER BY total DESC;""")
+            else:
+                totals = runquery(
+                    """SELECT SUM(money) AS total, province FROM t_sale_info WHERE `month` =""" + str(month) + """ GROUP BY province ORDER BY total DESC;""")
+            for total in totals:
+                total.get('province')
+                total.get('total')
 
         else:
             if city == 'all':
