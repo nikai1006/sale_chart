@@ -162,7 +162,7 @@ $(function () {
                     var cities = data.data;
                     if (cities.length > 0) {
                         $('#city').empty();
-                        $('#city').append("<option value=\"all\">all</option>");
+                        $('#city').append("<option value=\"all\" selected='selected'>all</option>");
                         for (i in cities) {
                             var city = cities[i];
                             console.log(city);
@@ -197,6 +197,7 @@ $(function () {
         } else {
             flushCity(province);
         }
+        freshChartDate();
     });
 
     $('#city').change(function () {
