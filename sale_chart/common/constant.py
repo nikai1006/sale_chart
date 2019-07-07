@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Name: __init__.py.py
+Name: constant.py
 Author: nikai
-Time: 2019/7/6 14:10
+Time: 2019/7/7 13:45
 Desc: todo
 """

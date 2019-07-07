@@ -7,6 +7,8 @@ class Sale(models.Model):
     city = models.CharField(max_length=10, null=False, verbose_name='市')
     month = models.SmallIntegerField(null=False, verbose_name='月份')
     money = models.FloatField(null=False, verbose_name="销售额")
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    updated_time = models.DateTimeField(auto_now=True, verbose_name="更新时间")
 
     class Meta:
         verbose_name = '销售信息表'
@@ -14,4 +16,4 @@ class Sale(models.Model):
         db_table = 't_sale_info'
 
     def __str__(self):
-        return self.province+self.city+self.month+"月销售额："+self.money
+        return self.province + self.city + self.month + "月销售额：" + self.money
