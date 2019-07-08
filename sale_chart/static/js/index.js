@@ -26,6 +26,7 @@ $(function () {
                 if (data.code == 0) {
                     // lineChartInit(data.data);
                     // pieChartInit(data.data);
+                    // console.log(data.data)
                     barChartInit(JSON.parse(data.data));
                     // large_scale_area(data.data)
                 } else {

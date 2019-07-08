@@ -16,6 +16,7 @@ from pyecharts.charts.base import Base
 from pyecharts.options.charts_options import *
 from pyecharts.options.series_options import *
 from pyecharts.options.global_options import *
+from pyecharts import types
 
 
 class ChartData(APIView):
@@ -75,8 +76,18 @@ class ChartData(APIView):
                 x_axis = list(map(lambda m: str(m) + '月', x_axis))
         # 绘图
         bar.add_xaxis(x_axis)
-        bar.add_yaxis(series_name=series_name, yaxis_data=y_axis)
-        bar.set_global_opts(title_opts=opts.TitleOpts(title=title))
+        bar.add_yaxis(series_name=series_name, yaxis_data=y_axis, markpoint_opts=MarkPointOpts(
+            data=[MarkPointItem(name='最大值', type_='max'), MarkPointItem(name='最小值', type_='min')]),
+                      markline_opts=MarkLineOpts(data=[MarkLineItem(type_='average', name='平均值')]))
+        bar.set_global_opts(title_opts=opts.TitleOpts(title=title), toolbox_opts={
+            'show': 'true',
+            'feature': {
+                'dataView': {'show': 'false', 'readOnly': 'false'},
+                'magicType': {'show': 'true', 'type': ['line', 'bar']},
+                'restore': {'show': 'true'},
+                'saveAsImage': {'show': 'true'}
+            }
+        })
         return response_success(data=bar.dump_options())
 
 
