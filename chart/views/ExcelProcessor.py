@@ -51,4 +51,5 @@ class ExcelProcessor(APIView):
                     sale_info.save()
                 else:
                     Sale.objects.create(province=province, city=city, month=i + 1, money=months_count[i])
+        os.remove(path_abspath) #清理临时文件
         return response_success(message='上传成功')

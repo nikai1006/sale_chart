@@ -61,6 +61,7 @@ $(function () {
     function barChartInit(option) {
 
         var barChart = echarts.init(document.getElementById('lineChart'));
+        // console.log(JSON.stringify())
         barChart.setOption(option);
     }
 
@@ -92,14 +93,6 @@ $(function () {
         });
     }
 
-    $('#flushBtn').click(function () {
-        var date = $('#date').val()
-        var start = date + " 00:00:00";
-        var end = date + " 23:59:59";
-        freshStaticsData(start, end, date, true);
-        freshChartDate(start, end, date, true);
-    });
-
     function flushCity(province) {
         $.ajax({
             type: 'GET',
@@ -119,9 +112,7 @@ $(function () {
                             console.log(city);
                             $('#city').append("<option value='" + city + "'>" + city + "</option>");
                         }
-                        var flush = $("[name='my-checkbox']").val();
-                        freshChartDate(start, end, cities[0], flush);
-                        tableView.fnDraw();
+                        freshChartDate();
                     }
                 } else {
                     layer.open({
@@ -141,7 +132,6 @@ $(function () {
     $('#province').change(function () {
         var province = $('#province').val();
         if (province == 'all') {
-            console.log(province)
             $('#city').empty();//清空列表
             $('#city').append("<option value=\"all\">all</option>");
 
@@ -168,11 +158,7 @@ $(function () {
     });
 
     $('#date').change(function () {
-        var date = $('#date').val()
-        var start = date + " 00:00:00";
-        var end = date + " 23:59:59";
-        // freshStaticsData(start, end, date, false);
-        freshChartDate(start, end, date, false);
+        freshChartDate();
     });
 
     $('#importBtn').click(function () {

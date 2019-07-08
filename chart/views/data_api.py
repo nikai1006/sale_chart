@@ -55,6 +55,7 @@ class ChartData(APIView):
                     for total in totals:
                         x_axis.append(total.get('month'))
                         y_axis.append(total.get('total'))
+                    x_axis = list(map(lambda m: str(m) + '月', x_axis))
                 else:
                     series_name = month + '月市销售额'
                     totals = runquery(
@@ -71,6 +72,7 @@ class ChartData(APIView):
                 for total in totals:
                     x_axis.append(total.get('month'))
                     y_axis.append(total.get('money'))
+                x_axis = list(map(lambda m: str(m) + '月', x_axis))
         # 绘图
         bar.add_xaxis(x_axis)
         bar.add_yaxis(series_name=series_name, yaxis_data=y_axis)
