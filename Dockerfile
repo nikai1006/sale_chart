@@ -14,4 +14,4 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' 
 
 EXPOSE 8000
 ENTRYPOINT python manage.py runserver '0.0.0.0:8000' "$0"
-CMD ["--settings=mina.settings.docker"]
+CMD ["--settings=sale_chart.settings.docker"]
