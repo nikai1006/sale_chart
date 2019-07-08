@@ -93,3 +93,12 @@ class ProvinceHandler(APIView):
         for item in items:
             cities.append(item.get('city'))
         return response_success(data=cities)
+
+
+class MonthHandler(APIView):
+    def get(self, request, format=None):
+        dates = []
+        months = runquery("""SELECT DISTINCT month FROM t_sale_info;""")
+        for month in months:
+            dates.append(month.get('month'))
+        return response_success(data=dates)

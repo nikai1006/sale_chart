@@ -22,4 +22,5 @@ urlpatterns = [
     path('upload/', ExcelProcessor.as_view()),
     path('city/', ProvinceHandler.as_view()),
     path('data/', ChartData.as_view()),
+    path('month/', MonthHandler.as_view()),
 ]
