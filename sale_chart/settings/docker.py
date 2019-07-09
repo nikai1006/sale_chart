@@ -14,7 +14,7 @@ DATABASES = {
         'NAME': 'sale_chart',
         'USER': 'test',
         'PASSWORD': '123456',
-        'HOST': 'docker',
+        'HOST': 'mysql',
         'PORT': '3306',
     }
 }

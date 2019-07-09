@@ -74,25 +74,6 @@ $(function () {
 
     }
 
-    function initFileInput() {
-        $("#file-4").fileinput({
-            // 'theme': 'fas',
-            // 'showUpload': false,
-            // 'showPreview': false,
-            // 'allowedFileExtensions': ['jpg', 'png', 'gif', 'xlsx'],
-            // 'elErrorContainer': '#errorBlock',
-            // 'uploadUrl': "/chart/upload/",
-            // 'maxFileCount': 5
-
-            language: 'zh', //设置语言
-            uploadUrl: "/chart/upload/", //上传的地址
-            allowedFileExtensions: ['jpg', 'png', 'gif', 'xlsx'],//接收的文件后缀
-            // showUpload: false, //是否显示上传按钮
-            // showCaption: false,//是否显示标题
-            browseClass: "btn btn-primary", //按钮样式
-            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        });
-    }
 
     function flushCity(province) {
         $.ajax({
@@ -146,14 +127,14 @@ $(function () {
         var city = $('#city').val();
         if (city == 'all') {
             $('#date').empty();//清空列表
-            $('#date').append("<option value=\"all\">all</option>");
+            $('#date').append("<option value=\"all\" selected=\"selected\">all</option>");
             for (i = 1; i < 7; i++) {
                 $('#date').append("<option value=\"" + i + "\">" + i + "月</option>");
 
             }
         } else {
             $('#date').empty();//清空列表
-            $('#date').append("<option value=\"all\">all</option>");
+            $('#date').append("<option value=\"all\" selected=\"selected\">all</option>");
         }
         freshChartDate()
     });
@@ -175,7 +156,6 @@ $(function () {
 
     freshChartDate();
 
-    // initFileInput();
 
 });
 
